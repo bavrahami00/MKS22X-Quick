@@ -20,9 +20,9 @@ public class Quick {
     move = data[start];
     data[start] = data[slide-1];
     data[slide-1] = move;
-    return slide-start-1;
+    return slide-1;
   }
   public static int quickselect(int []data, int k){
-    
+
   }
 }
