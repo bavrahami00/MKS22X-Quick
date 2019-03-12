@@ -59,5 +59,22 @@ public class Quick {
       }
     }
   }
-
+  public static void quicksort(int[] data) {
+    quicksortH(data,0,data.length-1);
+  }
+  private static void quicksortH(int[] data, int start, int end) {
+    if (start != end) {
+      int pivot = partition(data,start,end);
+      if (pivot == start) {
+        quicksortH(data,start+1,end);
+      }
+      else if (pivot == end) {
+        quicksortH(data,start,end-1);
+      }
+      else {
+        quicksort(data,start,pivot-1);
+        quicksort(data,pivot+1,end);
+      }
+    }
+  }
 }
