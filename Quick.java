@@ -1,8 +1,14 @@
+import java.util.Random;
 public class Quick {
+  public static void main(String[] args) {
+    for (int x = 0; x < 7; x++) {
+      int[] test = new int[] {1,4,2,6,3,8,5};
+      System.out.println(x+","+quickselect(test,x));
+    }
+  }
   public static int partition (int[] data, int start, int end) {
     Random r = new Random();
-    int pivot = Math.abs(r.nextInt()%data.length);
-    System.out.println(data[pivot]);
+    int pivot = Math.abs(r.nextInt()%(end-start+1))+start;
     int move = data[start];
     data[start] = data[pivot];
     data[pivot] = move;
@@ -31,10 +37,10 @@ public class Quick {
         return data[k];
       }
       if (temp > k) {
-        large = k-1;
+        large = temp-1;
       }
       else {
-        small = k+1;
+        small = temp+1;
       }
     }
   }
