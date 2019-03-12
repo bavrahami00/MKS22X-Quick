@@ -23,6 +23,19 @@ public class Quick {
     return slide-1;
   }
   public static int quickselect(int []data, int k){
-
+    int small = 0;
+    int large = data.length-1;
+    while (true) {
+      int temp = partition(data,small,large);
+      if (temp == k) {
+        return data[k];
+      }
+      if (temp > k) {
+        large = k-1;
+      }
+      else {
+        small = k+1;
+      }
+    }
   }
 }
