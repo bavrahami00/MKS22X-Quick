@@ -1,14 +1,23 @@
 import java.util.Random;
 public class Quick {
-  public static void main(String[] args) {
-    for (int x = 0; x < 7; x++) {
-      int[] test = new int[] {1,4,2,6,3,8,5};
-      System.out.println(x+","+quickselect(test,x));
-    }
-  }
   public static int partition (int[] data, int start, int end) {
     Random r = new Random();
-    int pivot = Math.abs(r.nextInt()%(end-start+1))+start;
+    int[] values = new int[6];
+    for (int x = 0; x < 3; x++) {
+      values[2*x] = Math.abs(r.nextInt()%(end-start+1))+start;
+      values[2*x+1] = data[values[2*x]];
+    }
+    int median = values[1]+values[3]+values[5]-Math.min(Math.min(values[1],values[3]),values[5])-Math.max(Math.max(values[1],values[3]),values[5]);
+    int pivot;
+    if (median == values[1]) {
+      pivot = values[0];
+    }
+    else if (median == values[3]) {
+      pivot = values[2];
+    }
+    else {
+      pivot = values[4];
+    }
     int move = data[start];
     data[start] = data[pivot];
     data[pivot] = move;
@@ -16,6 +25,12 @@ public class Quick {
     int slide = start+1;
     while (pivot != (end+1)) {
       if (data[pivot] < data[start]) {
+        move = data[slide];
+        data[slide] = data[pivot];
+        data[pivot] = move;
+        slide++;
+      }
+      else if (data[pivot] == data[start] && Math.abs(r.nextInt())%2 == 0) {
         move = data[slide];
         data[slide] = data[pivot];
         data[pivot] = move;
@@ -44,4 +59,5 @@ public class Quick {
       }
     }
   }
+
 }
