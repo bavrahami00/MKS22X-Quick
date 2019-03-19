@@ -69,13 +69,29 @@ public class Quick {
     }
   }
   public static void quicksortDutchH(int[] data, int start, int end) {
-    if (start < end) {
+    if (start+20 < end) {
       int[] pivots = partitionDutch(data,start,end);
       quicksortDutchH(data,start,pivots[0]-1);
       quicksortDutchH(data,pivots[1]+1,end);
     }
+    else {
+      insertionsort(data,start,end);
+    }
   }
   public static void quicksort(int[] data) {
     quicksortDutchH(data,0,data.length-1);
+  }
+  public static void insertionsort(int[] data, int start, int end) {
+    int at;
+    int temp;
+    for (int x = start+1; x <= end; x++) {
+      at = x;
+      while (at > start && data[at] < data[at-1]) {
+        temp = data[at-1];
+        data[at-1] = data[at];
+        data[at] = temp;
+        at--;
+      }
+    }
   }
 }
