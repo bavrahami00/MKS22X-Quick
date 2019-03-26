@@ -51,6 +51,9 @@ public class Quick {
     ans[1] = slither-1;
     return ans;
   }
+  public static int quickselect(int[] data, int k) {
+    return quickselectDutch(data,k);
+  }
   public static int quickselectDutch(int[] data, int k) {
     int small = 0;
     int large = data.length-1;
